@@ -9,10 +9,11 @@ from scipy import stats
 # Carga de Datos y Resumen General
 # ==========================================
 
-def load_dataset(filepath):
-    """Carga un dataset desde un archivo CSV."""
-    df = pd.read_csv(filepath)
-    print(f"Dataset loaded with shape: {df.shape}")
+def load_dataset(filename, folder="data"):
+    """Carga un dataset desde una carpeta específica (por defecto './data')."""
+    path = f"./{folder}/{filename}"
+    df = pd.read_csv(path)
+    print(f"📂 Dataset loaded from '{path}' with shape: {df.shape}")
     return df
 
 def basic_summary(df):
@@ -242,9 +243,9 @@ def eda_visualizations(df):
 
 # ==========================================
 # Guardar Dataset Procesado
-# ==========================================
-
+# ==========================================  
 def save_processed_dataset(df, filename="processed_dataset.csv"):
-    """Guarda el dataset limpio en un archivo CSV."""
-    df.to_csv(filename, index=False)
-    print(f"Dataset saved as '{filename}'")
+    """Guarda el dataset limpio en un archivo CSV. en la carpeta data"""
+    path = f"./data/{filename}"
+    df.to_csv(path, index=False)
+    print(f"Dataset saved as '{path}'")
