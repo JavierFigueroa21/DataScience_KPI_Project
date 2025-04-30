@@ -242,8 +242,55 @@ def eda_visualizations(df):
     correlation_matrix(df)
 
 # ==========================================
+# Visualizaciones de distribución
+# ==========================================
+def eda_distribution_plots(df, hue_column=None):
+    """
+    Genera visualizaciones para análisis de distribución de variables numéricas.
+    
+    - Histogramas + KDE
+    - Boxplots
+    - Violinplots
+    - (Opcional) Hue para segmentar por columna categórica
+    """
+    numeric_cols = df.select_dtypes(include=np.number).columns
+
+    for col in numeric_cols:
+        plt.figure(figsize=(14, 5))
+
+        # Histograma + KDE
+        plt.subplot(1, 3, 1)
+        if hue_column and hue_column in df.columns:
+            sns.histplot(data=df, x=col, hue=hue_column, kde=True, palette="pastel")
+        else:
+            sns.histplot(df[col], bins=30, kde=True, color='skyblue')
+        plt.title(f"Distribución: {col}")
+
+        # Boxplot
+        plt.subplot(1, 3, 2)
+        if hue_column and hue_column in df.columns:
+            sns.boxplot(data=df, x=hue_column, y=col, palette="Set2")
+            plt.title(f"Boxplot: {col} por {hue_column}")
+        else:
+            sns.boxplot(x=df[col], color='lightgreen')
+            plt.title(f"Boxplot: {col}")
+
+        # Violinplot
+        plt.subplot(1, 3, 3)
+        if hue_column and hue_column in df.columns:
+            sns.violinplot(data=df, x=hue_column, y=col, palette="Set3")
+            plt.title(f"Violinplot: {col} por {hue_column}")
+        else:
+            sns.Violinplot(y=df[col], color='lightcoral')
+            plt.title(f"Violinplot: {col}")
+
+        plt.tight_layout()
+        plt.show()
+
+# ==========================================
 # Guardar Dataset Procesado
-# ==========================================  
+# ==========================================
+
 def save_processed_dataset(df, filename="processed_dataset.csv"):
     """Guarda el dataset limpio en un archivo CSV. en la carpeta data"""
     path = f"./data/{filename}"
