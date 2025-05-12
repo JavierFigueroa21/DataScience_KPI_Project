@@ -175,3 +175,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# Ignorar todos los archivos CSV en cualquier subcarpeta de data
+data/**/*.csv
+
+# Asegurarse de que se rastreen las carpetas vacías
+!data/
+!data/raw/
+!data/processed/
