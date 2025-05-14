@@ -11,6 +11,13 @@ __pycache__/
 *.so
 *.json
 *.geojson
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.html
+*.xml
+
 
 # Distribution / packaging
 .Python
