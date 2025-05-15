@@ -1,7 +1,7 @@
 #Data files
 *.csv
 *.pdf
-
+*.DS_Store
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -11,6 +11,13 @@ __pycache__/
 *.so
 *.json
 *.geojson
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.html
+*.xml
+
 
 # Distribution / packaging
 .Python
@@ -175,3 +182,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# Ignorar todos los archivos CSV en cualquier subcarpeta de data
+data/**/*.csv
+
+# Asegurarse de que se rastreen las carpetas vacías
+!data/
+!data/raw/
+!data/processed/
